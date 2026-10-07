@@ -1,0 +1,1784 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#173e32">
+    <meta name="description"
+        content="Entra al mundo Lumarén: una experiencia para conocer, explorar y transformar con arte, naturaleza y comunidad.">
+    <title>Lumarén — entra, explora, transforma</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700;12..96,800&family=Caveat:wght@500;600&family=DM+Sans:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            color-scheme: light;
+            --green: #173e32;
+            --green-deep: #102e27;
+            --blue: #183b5b;
+            --paper: #f2f3ee;
+            --white: #fffefa;
+            --ink: #173e32;
+            --muted: #62736b;
+            --line: rgba(23, 62, 50, .22);
+            --display: "Bricolage Grotesque", "DM Sans", sans-serif;
+            --body: "DM Sans", sans-serif;
+            --hand: "Caveat", cursive;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 78px;
+        }
+
+        body {
+            margin: 0;
+            background: var(--paper);
+            color: var(--ink);
+            font-family: var(--body);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        img {
+            display: block;
+            max-width: 100%;
+        }
+
+        button,
+        textarea {
+            font: inherit;
+        }
+
+        button {
+            color: inherit;
+        }
+
+        a {
+            color: inherit;
+        }
+
+        .wrap {
+            width: min(1160px, calc(100% - 48px));
+            margin-inline: auto;
+        }
+
+        .topbar {
+            position: sticky;
+            z-index: 20;
+            top: 0;
+            border-bottom: 1px solid var(--line);
+            background: rgba(242, 243, 238, .96);
+            backdrop-filter: blur(14px);
+        }
+
+        .nav {
+            display: flex;
+            min-height: 70px;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            flex: 0 0 auto;
+            text-decoration: none;
+        }
+
+        .brand img {
+            width: 36px;
+            height: 36px;
+            padding: 4px;
+            border-radius: 50%;
+            background: var(--green);
+            object-fit: contain;
+        }
+
+        .brand span {
+            font: 800 19px/1 var(--display);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: clamp(10px, 2.2vw, 27px);
+        }
+
+        .nav-links a {
+            font-size: 11px;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .nav-links a:hover,
+        .nav-links a:focus-visible {
+            text-decoration: underline;
+            text-underline-offset: 5px;
+        }
+
+        .nav-join {
+            padding: 10px 14px;
+            border-radius: 999px;
+            background: var(--green);
+            color: var(--white);
+        }
+
+        .eyebrow {
+            margin: 0 0 14px;
+            font: 800 11px/1.3 var(--display);
+            letter-spacing: .08em;
+            text-transform: uppercase;
+        }
+
+        .title {
+            margin: 0;
+            font: 800 clamp(42px, 7vw, 82px)/.94 var(--display);
+            letter-spacing: 0;
+        }
+
+        .hand-note {
+            font: 600 28px/1.1 var(--hand);
+        }
+
+        .hero {
+            position: relative;
+            overflow: hidden;
+            min-height: 640px;
+            display: grid;
+            align-items: center;
+            padding: 78px 0 90px;
+            background: var(--green);
+            color: var(--white);
+        }
+
+        .hero::before {
+            position: absolute;
+            inset: 0;
+            background-image: radial-gradient(rgba(255, 254, 250, .13) .8px, transparent .8px);
+            background-size: 17px 17px;
+            content: "";
+            opacity: .36;
+            mask-image: linear-gradient(90deg, #000, transparent 76%);
+        }
+
+        .hero-grid {
+            position: relative;
+            display: grid;
+            grid-template-columns: 1.05fr .95fr;
+            align-items: center;
+            gap: clamp(25px, 6vw, 85px);
+        }
+
+        .hero-copy {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero .eyebrow {
+            color: #d4ddd5;
+        }
+
+        .hero h1 {
+            max-width: 680px;
+            margin: 0;
+            font: 800 clamp(62px, 10vw, 120px)/.8 var(--display);
+            letter-spacing: 0;
+        }
+
+        .hero h1 span {
+            display: block;
+            color: #e4e8df;
+        }
+
+        .hero-lede {
+            max-width: 450px;
+            margin: 27px 0 25px;
+            color: #e3e9e2;
+            font-size: 16px;
+            line-height: 1.7;
+        }
+
+        .button-link,
+        .button {
+            display: inline-flex;
+            min-height: 46px;
+            align-items: center;
+            justify-content: center;
+            gap: 11px;
+            padding: 12px 18px;
+            border: 1px solid transparent;
+            border-radius: 999px;
+            background: var(--white);
+            color: var(--green);
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 800;
+            text-decoration: none;
+            transition: transform .2s ease, background .2s ease;
+        }
+
+        .button-link:hover,
+        .button:hover {
+            transform: translateY(-3px) rotate(-1deg);
+        }
+
+        .hero-mark {
+            position: relative;
+            display: grid;
+            min-height: 405px;
+            place-items: center;
+        }
+
+        .hero-mark::before {
+            position: absolute;
+            width: min(78%, 365px);
+            aspect-ratio: 1;
+            border: 1px solid rgba(255, 254, 250, .56);
+            border-radius: 46% 54% 50% 50%;
+            content: "";
+            animation: drift 9s ease-in-out infinite alternate;
+        }
+
+        .hero-mark::after {
+            position: absolute;
+            width: min(66%, 310px);
+            aspect-ratio: 1;
+            border: 1px dashed rgba(255, 254, 250, .42);
+            border-radius: 50%;
+            content: "";
+            animation: drift 7s ease-in-out infinite alternate-reverse;
+        }
+
+        .hero-logo {
+            position: relative;
+            z-index: 1;
+            width: min(62%, 265px);
+            padding: 12px;
+            transition: transform .3s ease;
+        }
+
+        .hero-logo:hover {
+            transform: rotate(-8deg) scale(1.06);
+        }
+
+        .hero-stamp {
+            position: absolute;
+            z-index: 3;
+            right: 2%;
+            bottom: 13%;
+            display: grid;
+            width: 108px;
+            aspect-ratio: 1;
+            place-items: center;
+            padding: 13px;
+            border-radius: 50%;
+            background: var(--paper);
+            color: var(--green);
+            font: 800 13px/1.05 var(--display);
+            text-align: center;
+            transform: rotate(9deg);
+        }
+
+        .hero-scribble {
+            position: absolute;
+            top: 7%;
+            right: 1%;
+            color: #e2e8dc;
+        }
+
+        @keyframes drift {
+            to {
+                transform: rotate(11deg) scale(1.04);
+            }
+        }
+
+        .ticker {
+            overflow: hidden;
+            padding: 14px 0;
+            background: var(--blue);
+            color: var(--white);
+        }
+
+        .ticker-track {
+            display: flex;
+            width: max-content;
+            animation: marquee 28s linear infinite;
+        }
+
+        .ticker span {
+            padding-right: 24px;
+            font: 800 13px var(--display);
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+
+        @keyframes marquee {
+            to {
+                transform: translateX(-50%);
+            }
+        }
+
+        .story {
+            padding: 105px 0 112px;
+        }
+
+        .section-head {
+            display: flex;
+            align-items: end;
+            justify-content: space-between;
+            gap: 30px;
+            margin-bottom: 44px;
+        }
+
+        .section-head p:last-child {
+            max-width: 390px;
+            margin: 0 0 5px;
+            color: var(--muted);
+            font-size: 15px;
+            line-height: 1.7;
+        }
+
+        .story-flow {
+            display: grid;
+            grid-template-columns: 1fr 52px 1fr 52px 1fr;
+            align-items: stretch;
+            gap: 12px;
+        }
+
+        .story-panel {
+            min-height: 230px;
+            padding: 23px;
+            border: 1px solid var(--line);
+            background: var(--white);
+            transition: background .35s ease, color .35s ease, transform .35s ease;
+        }
+
+        .story-panel h3 {
+            margin: 0 0 19px;
+            font: 800 17px var(--display);
+        }
+
+        .story-panel ul {
+            display: grid;
+            gap: 10px;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .story-panel li {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            font-size: 14px;
+        }
+
+        .story-panel li::before {
+            width: 7px;
+            height: 7px;
+            flex: 0 0 auto;
+            border: 1.5px solid currentColor;
+            border-radius: 50%;
+            content: "";
+        }
+
+        .story-panel.transform {
+            background: var(--green);
+            color: var(--white);
+        }
+
+        .story-panel.transform:last-child {
+            background: var(--blue);
+        }
+
+        .story-arrow {
+            display: grid;
+            place-items: center;
+            color: var(--blue);
+            font-size: 23px;
+        }
+
+        .transform-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            margin-top: 24px;
+        }
+
+        .transform-row p {
+            margin: 0;
+            color: var(--muted);
+            font: 600 24px var(--hand);
+        }
+
+        .outline-button {
+            min-height: 42px;
+            padding: 10px 15px;
+            border: 1px solid var(--green);
+            border-radius: 999px;
+            background: transparent;
+            cursor: pointer;
+            font-size: 11px;
+            font-weight: 800;
+            transition: background .2s ease, color .2s ease;
+        }
+
+        .outline-button:hover {
+            background: var(--green);
+            color: var(--white);
+        }
+
+        .code {
+            padding: 100px 0 110px;
+            background: var(--blue);
+            color: var(--white);
+        }
+
+        .code .section-head p:last-child {
+            color: #d2dce1;
+        }
+
+        .code-layout {
+            display: grid;
+            grid-template-columns: .9fr 1.1fr;
+            gap: clamp(35px, 8vw, 100px);
+            align-items: center;
+        }
+
+        .symbol-stage {
+            display: grid;
+            min-height: 400px;
+            place-items: center;
+            border: 1px solid rgba(255, 254, 250, .34);
+            background-image: radial-gradient(rgba(255, 254, 250, .15) .8px, transparent .8px);
+            background-size: 18px 18px;
+        }
+
+        .custom-symbol {
+            position: relative;
+            width: min(82%, 315px);
+            aspect-ratio: 1037 / 800;
+        }
+
+        .symbol-part {
+            position: absolute;
+            inset: 0;
+            background-color: var(--mark-color, #fffefa);
+            -webkit-mask-image: var(--part-image);
+            mask-image: var(--part-image);
+            -webkit-mask-position: center;
+            mask-position: center;
+            -webkit-mask-repeat: no-repeat;
+            mask-repeat: no-repeat;
+            -webkit-mask-size: 100% 100%;
+            mask-size: 100% 100%;
+            opacity: .13;
+            transition: opacity .25s ease, transform .25s ease;
+            transform-origin: center;
+        }
+
+        .symbol-part[data-part="triangle"] {
+            -webkit-mask-size: 92% 65%;
+            mask-size: 92% 65%;
+            -webkit-mask-position: center 4%;
+            mask-position: center 4%;
+            transition: opacity .25s ease;
+        }
+
+        .symbol-part[data-part="wave"] {
+            -webkit-mask-size: 76% 15%;
+            mask-size: 76% 15%;
+            -webkit-mask-position: center 72%;
+            mask-position: center 72%;
+        }
+
+        .symbol-part.active {
+            opacity: 1;
+        }
+
+        .symbol-part:hover {
+            transform: scale(1.08);
+        }
+
+        .symbol-part[data-part="triangle"]:hover {
+            transform: none;
+        }
+
+        .symbol-controls {
+            display: grid;
+            gap: 12px;
+        }
+
+        .symbol-toggle {
+            display: grid;
+            grid-template-columns: 42px 1fr auto;
+            min-height: 66px;
+            align-items: center;
+            gap: 13px;
+            padding: 11px 14px;
+            border: 1px solid rgba(255, 254, 250, .35);
+            background: transparent;
+            color: var(--white);
+            cursor: pointer;
+            text-align: left;
+            transition: background .2s ease;
+        }
+
+        .symbol-toggle[aria-pressed="true"] {
+            background: rgba(255, 254, 250, .12);
+        }
+
+        .symbol-toggle:hover {
+            background: rgba(255, 254, 250, .16);
+        }
+
+        .symbol-mini {
+            font-size: 25px;
+            text-align: center;
+        }
+
+        .symbol-toggle strong {
+            display: block;
+            font: 700 15px var(--display);
+        }
+
+        .symbol-toggle small {
+            display: block;
+            margin-top: 4px;
+            color: #d2dce1;
+            font-size: 11px;
+        }
+
+        .toggle-state {
+            font-size: 10px;
+            text-transform: uppercase;
+        }
+
+        .palette-row {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 10px;
+            margin-top: 23px;
+        }
+
+        .palette-label {
+            margin-right: 6px;
+            color: #d2dce1;
+            font-size: 11px;
+        }
+
+        .palette-choice {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px;
+            border: 1px solid transparent;
+            background: transparent;
+            color: var(--white);
+            cursor: pointer;
+            font-size: 11px;
+        }
+
+        .palette-choice[aria-pressed="true"] {
+            border-color: rgba(255, 254, 250, .72);
+        }
+
+        .palette-dot {
+            width: 18px;
+            height: 18px;
+            border: 1px solid rgba(255, 254, 250, .7);
+            border-radius: 50%;
+            background: var(--swatch);
+        }
+
+        .symbol-result {
+            min-height: 46px;
+            margin: 18px 0 0;
+            color: #e6ebe8;
+            font: 600 21px/1.25 var(--hand);
+        }
+
+        .materials {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1px;
+            margin-top: 61px;
+            border: 1px solid rgba(255, 254, 250, .3);
+            background: rgba(255, 254, 250, .3);
+        }
+
+        .material {
+            min-height: 105px;
+            display: grid;
+            align-content: space-between;
+            padding: 14px;
+            background: var(--blue);
+        }
+
+        .material span:first-child {
+            font-size: 11px;
+            color: #d2dce1;
+        }
+
+        .material strong {
+            font: 700 16px var(--display);
+        }
+
+        .identity {
+            padding: 104px 0;
+        }
+
+        .wear-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            gap: clamp(35px, 8vw, 100px);
+        }
+
+        .bracelet-photo {
+            position: relative;
+            min-height: 390px;
+            display: grid;
+            place-items: center;
+            overflow: hidden;
+            background: #e3e7df;
+        }
+
+        .bracelet-photo::before {
+            position: absolute;
+            inset: 15px;
+            border: 1px solid rgba(23, 62, 50, .28);
+            content: "";
+            pointer-events: none;
+        }
+
+        .bracelet-photo img {
+            width: 100%;
+            height: 390px;
+            object-fit: contain;
+            mix-blend-mode: multiply;
+            transition: opacity .25s ease;
+        }
+
+        .identity-copy .title {
+            max-width: 560px;
+        }
+
+        .identity-copy>p:not(.eyebrow) {
+            max-width: 460px;
+            color: var(--muted);
+            font-size: 15px;
+            line-height: 1.7;
+        }
+
+        .swatch-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 9px;
+            margin: 22px 0;
+            padding: 0;
+            border: 0;
+        }
+
+        .swatch-options legend {
+            width: 100%;
+            margin-bottom: 8px;
+            font-size: 11px;
+            font-weight: 800;
+            text-transform: uppercase;
+        }
+
+        .swatch-button {
+            display: inline-flex;
+            min-height: 42px;
+            align-items: center;
+            gap: 8px;
+            padding: 7px 11px;
+            border: 1px solid transparent;
+            border-radius: 999px;
+            background: transparent;
+            cursor: pointer;
+            font-size: 11px;
+        }
+
+        .swatch-button[aria-pressed="true"] {
+            border-color: var(--green);
+            background: var(--white);
+        }
+
+        .swatch-chip {
+            width: 15px;
+            height: 15px;
+            border: 1px solid var(--line);
+            border-radius: 50%;
+            background: var(--color);
+        }
+
+        .bracelet-meaning {
+            min-height: 50px;
+            padding-left: 13px;
+            border-left: 2px solid var(--green);
+            color: var(--muted);
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        .face-block {
+            display: grid;
+            grid-template-columns: .85fr 1.15fr;
+            align-items: center;
+            gap: clamp(35px, 8vw, 100px);
+            margin-top: 105px;
+            padding-top: 75px;
+            border-top: 1px solid var(--line);
+        }
+
+        .face-gallery {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .face-gallery figure {
+            margin: 0;
+        }
+
+        .face-gallery img {
+            width: 100%;
+            height: clamp(210px, 30vw, 340px);
+            object-fit: cover;
+        }
+
+        .face-gallery figcaption {
+            margin-top: 8px;
+            color: var(--muted);
+            font: 500 19px var(--hand);
+        }
+
+        .sequence {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 7px;
+            margin-top: 22px;
+        }
+
+        .sequence span {
+            padding: 8px 10px;
+            border: 1px solid var(--line);
+            font-size: 10px;
+            font-weight: 700;
+        }
+
+        .ritual {
+            padding: 100px 0 105px;
+            background: var(--green-deep);
+            color: var(--white);
+        }
+
+        .ritual-head {
+            display: flex;
+            align-items: end;
+            justify-content: space-between;
+            gap: 30px;
+            margin-bottom: 38px;
+        }
+
+        .ritual-head>p {
+            max-width: 390px;
+            margin: 0 0 5px;
+            color: #d2ddd5;
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        .ritual-box {
+            display: grid;
+            grid-template-columns: .75fr 1.25fr;
+            min-height: 340px;
+            border: 1px solid rgba(255, 254, 250, .4);
+        }
+
+        .ritual-aside {
+            display: grid;
+            align-content: space-between;
+            padding: 25px;
+            border-right: 1px solid rgba(255, 254, 250, .4);
+        }
+
+        .ritual-aside img {
+            width: 85px;
+            height: 85px;
+            padding: 10px;
+            border: 1px solid rgba(255, 254, 250, .5);
+            border-radius: 50%;
+            object-fit: contain;
+        }
+
+        .ritual-aside p {
+            max-width: 210px;
+            margin: 30px 0 0;
+            color: #d2ddd5;
+            font: 600 23px/1.2 var(--hand);
+        }
+
+        .ritual-main {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: clamp(23px, 5vw, 50px);
+        }
+
+        .ritual-status {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: .09em;
+        }
+
+        .ritual-track {
+            display: flex;
+            flex: 1;
+            gap: 5px;
+        }
+
+        .ritual-track span {
+            height: 2px;
+            flex: 1;
+            background: rgba(255, 254, 250, .25);
+        }
+
+        .ritual-track span.active {
+            background: var(--white);
+        }
+
+        .ritual-content {
+            min-height: 145px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 22px 0;
+        }
+
+        .ritual-content h3 {
+            margin: 0 0 12px;
+            color: #d7e0d8;
+            font: 600 21px var(--hand);
+        }
+
+        .ritual-content p {
+            max-width: 600px;
+            margin: 0;
+            font: 700 clamp(25px, 4vw, 43px)/1.12 var(--display);
+        }
+
+        .ritual-actions {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .ritual-actions .button {
+            background: var(--white);
+        }
+
+        .ritual-actions .outline-button {
+            border-color: rgba(255, 254, 250, .65);
+            color: var(--white);
+        }
+
+        .ritual-actions .outline-button:hover {
+            background: var(--white);
+            color: var(--green);
+        }
+
+        .ritual-choices {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 16px;
+        }
+
+        .ritual-choice {
+            padding: 9px 12px;
+            border: 1px solid rgba(255, 254, 250, .45);
+            border-radius: 999px;
+            background: transparent;
+            color: var(--white);
+            cursor: pointer;
+            font-size: 11px;
+        }
+
+        .ritual-choice[aria-pressed="true"] {
+            background: var(--white);
+            color: var(--green);
+        }
+
+        .manifest {
+            padding: 104px 0 90px;
+        }
+
+        .manifest-grid {
+            display: grid;
+            grid-template-columns: 1fr .78fr;
+            gap: clamp(40px, 9vw, 120px);
+        }
+
+        .manifest-copy blockquote {
+            margin: 30px 0 0;
+            font: 700 clamp(26px, 4vw, 43px)/1.22 var(--display);
+        }
+
+        .manifest-copy blockquote p {
+            margin: 0 0 10px;
+        }
+
+        .manifest-copy blockquote p:first-child {
+            color: var(--blue);
+        }
+
+        .manifest-copy blockquote p:last-child {
+            margin-top: 22px;
+        }
+
+        .reflection {
+            align-self: start;
+            padding: 24px;
+            border: 1px solid var(--line);
+            background: var(--white);
+        }
+
+        .reflection h3 {
+            margin: 0 0 8px;
+            font: 800 25px var(--display);
+        }
+
+        .reflection>p {
+            margin: 0 0 17px;
+            color: var(--muted);
+            font-size: 13px;
+            line-height: 1.55;
+        }
+
+        .reflection label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 11px;
+            font-weight: 800;
+        }
+
+        .reflection textarea {
+            width: 100%;
+            min-height: 120px;
+            resize: vertical;
+            padding: 12px;
+            border: 1px solid var(--line);
+            border-radius: 0;
+            background: var(--paper);
+            color: var(--ink);
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .reflection textarea:focus-visible {
+            outline: 2px solid var(--blue);
+            outline-offset: 2px;
+        }
+
+        .reflection-actions {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            margin-top: 12px;
+        }
+
+        .reflection-actions .button {
+            min-height: 40px;
+            padding: 10px 14px;
+            background: var(--green);
+            color: var(--white);
+        }
+
+        .save-state {
+            margin: 0;
+            color: var(--muted);
+            font-size: 10px;
+        }
+
+        .manifest {
+            position: relative;
+            overflow: hidden;
+            padding: 100px 0 92px;
+            background: var(--green-deep);
+            color: var(--white);
+        }
+
+        .manifest::after {
+            position: absolute;
+            right: -180px;
+            bottom: -260px;
+            width: 520px;
+            aspect-ratio: 1;
+            border: 1px solid rgba(255, 254, 250, .2);
+            border-radius: 50%;
+            content: "";
+        }
+
+        .manifest-wrap {
+            position: relative;
+            z-index: 1;
+        }
+
+        .manifest-head {
+            display: flex;
+            align-items: end;
+            justify-content: space-between;
+            gap: 30px;
+            padding-bottom: 34px;
+            border-bottom: 1px solid rgba(255, 254, 250, .35);
+        }
+
+        .manifest-head .eyebrow,
+        .manifest-head .hand-note {
+            color: #d4ddd5;
+        }
+
+        .manifest-head .hand-note {
+            margin: 0 2px 7px 0;
+        }
+
+        .manifest-lines {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            column-gap: clamp(25px, 6vw, 80px);
+        }
+
+        .manifest-line {
+            display: grid;
+            grid-template-columns: 42px 1fr;
+            gap: 14px;
+            padding: 25px 0;
+            border-bottom: 1px solid rgba(255, 254, 250, .22);
+        }
+
+        .manifest-line:nth-child(5) {
+            grid-column: 1 / -1;
+        }
+
+        .manifest-line span {
+            padding-top: 4px;
+            color: #b9c9c0;
+            font: italic 14px Georgia, serif;
+        }
+
+        .manifest-line p {
+            max-width: 480px;
+            margin: 0;
+            font: 700 clamp(20px, 2.6vw, 30px)/1.2 var(--display);
+        }
+
+        .manifest-line:first-child p {
+            color: #dce5db;
+        }
+
+        .manifest-end {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            align-items: center;
+            gap: 28px;
+            margin-top: 40px;
+        }
+
+        .manifest-end>p {
+            max-width: 650px;
+            margin: 0;
+            color: #d4ddd5;
+            font-size: 13px;
+            line-height: 1.7;
+        }
+
+        .reflection {
+            width: min(330px, 100%);
+            align-self: auto;
+            padding: 0;
+            border: 0;
+            background: transparent;
+            color: var(--white);
+        }
+
+        .reflection label {
+            display: block;
+            margin-bottom: 8px;
+            font: 800 11px var(--display);
+        }
+
+        .reflection textarea {
+            width: 100%;
+            min-height: 88px;
+            resize: vertical;
+            padding: 11px;
+            border: 1px solid rgba(255, 254, 250, .45);
+            border-radius: 0;
+            background: rgba(255, 254, 250, .08);
+            color: var(--white);
+            font-size: 12px;
+            line-height: 1.5;
+        }
+
+        .reflection textarea::placeholder {
+            color: #c7d2ca;
+        }
+
+        .reflection button {
+            min-height: 39px;
+            margin-top: 9px;
+            padding: 9px 13px;
+            border: 0;
+            border-radius: 99px;
+            background: var(--white);
+            color: var(--green);
+            cursor: pointer;
+            font-size: 10px;
+            font-weight: 800;
+        }
+
+        .reflection-state {
+            min-height: 14px;
+            margin: 7px 0 0;
+            color: #d4ddd5;
+            font-size: 9px;
+        }
+
+        .reflection>.reflection-state {
+            margin-bottom: 0;
+            color: #d4ddd5;
+            font-size: 9px;
+            line-height: 1.4;
+        }
+
+        .footer {
+            padding: 23px 0;
+            border-top: 1px solid var(--line);
+        }
+
+        .footer-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 18px;
+        }
+
+        .footer-row p {
+            margin: 0;
+            color: var(--muted);
+            font-size: 11px;
+        }
+
+        .footer-row a {
+            font-size: 11px;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        :focus-visible {
+            outline: 2px solid currentColor;
+            outline-offset: 4px;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(18px);
+            transition: opacity .6s ease, transform .6s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 800px) {
+            .wrap {
+                width: min(100% - 34px, 620px);
+            }
+
+            .nav {
+                min-height: 62px;
+            }
+
+            .nav-links {
+                max-width: calc(100vw - 135px);
+                overflow-x: auto;
+                gap: 15px;
+                scrollbar-width: none;
+            }
+
+            .nav-links::-webkit-scrollbar {
+                display: none;
+            }
+
+            .nav-links a {
+                flex: 0 0 auto;
+                font-size: 10px;
+            }
+
+            .nav-join {
+                display: none;
+            }
+
+            .hero {
+                min-height: auto;
+                padding: 68px 0 72px;
+            }
+
+            .hero-grid,
+            .code-layout,
+            .wear-grid,
+            .face-block,
+            .ritual-box,
+            .manifest-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-grid {
+                gap: 18px;
+            }
+
+            .hero h1 {
+                font-size: clamp(68px, 16vw, 105px);
+            }
+
+            .hero-mark {
+                min-height: min(90vw, 410px);
+            }
+
+            .hero-stamp {
+                right: 8%;
+                bottom: 8%;
+            }
+
+            .section-head,
+            .ritual-head {
+                display: block;
+            }
+
+            .section-head p:last-child,
+            .ritual-head>p {
+                margin-top: 18px;
+            }
+
+            .story-flow {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+
+            .story-panel {
+                min-height: unset;
+            }
+
+            .story-arrow {
+                min-height: 42px;
+                transform: rotate(90deg);
+            }
+
+            .story-panel:nth-of-type(2) {
+                transition-delay: .08s;
+            }
+
+            .transform-row {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .code-layout {
+                gap: 30px;
+            }
+
+            .symbol-stage {
+                min-height: 310px;
+            }
+
+            .materials {
+                grid-template-columns: 1fr 1fr;
+                margin-top: 42px;
+            }
+
+            .material {
+                min-height: 88px;
+            }
+
+            .bracelet-photo {
+                min-height: 310px;
+            }
+
+            .bracelet-photo img {
+                height: 310px;
+            }
+
+            .face-block {
+                gap: 30px;
+                margin-top: 72px;
+                padding-top: 55px;
+            }
+
+            .face-gallery img {
+                height: 250px;
+            }
+
+            .ritual-aside {
+                min-height: 155px;
+                grid-template-columns: auto 1fr;
+                align-items: center;
+                gap: 20px;
+                border-right: 0;
+                border-bottom: 1px solid rgba(255, 254, 250, .4);
+            }
+
+            .ritual-aside p {
+                margin: 0;
+            }
+
+            .ritual-main {
+                min-height: 305px;
+            }
+
+            .manifest {
+                padding-block: 70px;
+            }
+
+            .manifest-head {
+                align-items: flex-start;
+                flex-direction: column;
+                gap: 2px;
+            }
+
+            .manifest-lines {
+                grid-template-columns: 1fr;
+            }
+
+            .manifest-line:nth-child(5) {
+                grid-column: auto;
+            }
+
+            .manifest-end {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+        }
+
+        @media (max-width: 430px) {
+            .brand span {
+                font-size: 17px;
+            }
+
+            .brand img {
+                width: 32px;
+                height: 32px;
+            }
+
+            .nav-links {
+                max-width: calc(100vw - 123px);
+                gap: 12px;
+            }
+
+            .hero h1 {
+                font-size: clamp(60px, 17vw, 78px);
+            }
+
+            .title {
+                font-size: clamp(40px, 12vw, 55px);
+            }
+
+            .face-gallery {
+                gap: 8px;
+            }
+
+            .face-gallery img {
+                height: 200px;
+            }
+
+            .ritual-status {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .ritual-track {
+                width: 100%;
+            }
+
+            .footer-row {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+
+            *,
+            *::before,
+            *::after {
+                scroll-behavior: auto !important;
+                animation-duration: .01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: .01ms !important;
+            }
+
+            .reveal {
+                opacity: 1;
+                transform: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="topbar">
+        <nav class="nav wrap" aria-label="Navegación principal">
+            <a class="brand" href="#inicio" aria-label="Lumarén, inicio"><img src="img/logo_blanco_transparente.png"
+                    alt=""><span>Lumarén</span></a>
+            <div class="nav-links">
+                <a href="#historia">Historia</a>
+                <a href="#codigo">Código</a>
+                <a href="#identidad">Identidad</a>
+                <a href="#manifiesto">Manifiesto</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero" id="inicio">
+            <div class="hero-grid wrap">
+                <div class="hero-copy">
+                    <p class="eyebrow">Un espacio para conocer, explorar y formar parte</p>
+                    <h1>LUMARÉN<span>ENTRA.</span></h1>
+                    <p class="hero-lede">Nacidos de un mundo que olvidó detenerse. Una tribu para crear sin miedo,
+                        cuidar lo que nos rodea y volver a encontrarnos.</p>
+                    <a class="button-link" href="#historia">Descubrir la tribu <span aria-hidden="true">↘</span></a>
+                </div>
+                <div class="hero-mark" aria-label="Símbolo de Lumarén">
+                    <span class="hero-scribble hand-note">un mundo por transformar</span>
+                    <img class="hero-logo" src="img/logo_blanco_transparente.png" alt="Isologotipo original de Lumarén">
+                    <span class="hero-stamp">ARTE<br>+ NATURALEZA<br>+ NOSOTRAS</span>
+                </div>
+            </div>
+        </section>
+
+        <div class="ticker" aria-label="Crear, cuidar, conectar y transformar">
+            <div class="ticker-track" aria-hidden="true">
+                <span>Crear sin permiso ✳ Cuidar lo que importa ✳ Conectar de verdad ✳ Transformar lo cotidiano ✳
+                </span>
+                <span>Crear sin permiso ✳ Cuidar lo que importa ✳ Conectar de verdad ✳ Transformar lo cotidiano ✳
+                </span>
+            </div>
+        </div>
+
+        <section class="story wrap" id="historia">
+            <div class="section-head reveal">
+                <div>
+                    <p class="eyebrow">01 / Germen creativo</p>
+                    <h2 class="title">No queremos<br>seguir en piloto.</h2>
+                </div>
+                <p>Lumarén nace como respuesta a un mundo demasiado rápido, superficial y contaminado. Paramos un
+                    segundo para imaginar otra forma de vivir.</p>
+            </div>
+            <div class="story-flow reveal" id="story-flow">
+                <article class="story-panel">
+                    <h3>RECHAZAMOS</h3>
+                    <ul>
+                        <li>La contaminación</li>
+                        <li>Vivir de apariencias</li>
+                        <li>No tener tiempo para sentir</li>
+                    </ul>
+                </article>
+                <span class="story-arrow" aria-hidden="true">↓</span>
+                <article class="story-panel">
+                    <h3>DEFENDEMOS</h3>
+                    <ul>
+                        <li>La libertad de expresarnos</li>
+                        <li>El cuidado de la naturaleza</li>
+                        <li>La conexión y la cooperación</li>
+                    </ul>
+                </article>
+                <span class="story-arrow" aria-hidden="true">↓</span>
+                <article class="story-panel">
+                    <h3>TRANSFORMAMOS</h3>
+                    <ul>
+                        <li>Lo cotidiano, con arte</li>
+                        <li>Lo individual, en comunidad</li>
+                        <li>Lo que existe, en algo nuevo</li>
+                    </ul>
+                </article>
+            </div>
+            <div class="transform-row reveal">
+                <p>De lo que nos pesa, hacemos impulso.</p>
+                <button class="outline-button" id="transform-button" type="button" aria-pressed="false">Ver la
+                    transformación ↗</button>
+            </div>
+        </section>
+
+        <section class="code" id="codigo">
+            <div class="wrap">
+                <div class="section-head reveal">
+                    <div>
+                        <p class="eyebrow">02 / Nuestro código</p>
+                        <h2 class="title">Arma tu<br>propio símbolo.</h2>
+                    </div>
+                    <p>Toca cada forma para construir una versión del símbolo Lumarén. Cambia el color y descubre qué
+                        cuenta tu combinación.</p>
+                </div>
+                <div class="code-layout reveal">
+                    <div class="symbol-stage">
+                        <div class="custom-symbol" id="custom-symbol" role="img" aria-label="Tu símbolo Lumarén">
+                            <span class="symbol-part active" data-part="circle"
+                                style="--part-image:url('img/logo_blanco_transparente_Circulo.png')"></span>
+                            <span class="symbol-part active" data-part="wave"
+                                style="--part-image:url('img/logo_blanco_transparente_LineaOndulada.png')"></span>
+                            <span class="symbol-part active" data-part="triangle"
+                                style="--part-image:url('img/logo_blanco_transparente_Triangulo.png')"></span>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="symbol-controls" aria-label="Partes del símbolo">
+                            <button class="symbol-toggle" type="button" data-symbol="circle" aria-pressed="true"><span
+                                    class="symbol-mini"
+                                    aria-hidden="true">○</span><span><strong>Círculo</strong><small>Comunidad: un lugar
+                                        donde cada quien cuenta.</small></span><span
+                                    class="toggle-state">Activo</span></button>
+                            <button class="symbol-toggle" type="button" data-symbol="wave" aria-pressed="true"><span
+                                    class="symbol-mini" aria-hidden="true">〰</span><span><strong>Onda</strong><small>Mar
+                                        y movimiento: nada permanece quieto.</small></span><span
+                                    class="toggle-state">Activo</span></button>
+                            <button class="symbol-toggle" type="button" data-symbol="triangle" aria-pressed="true"><span
+                                    class="symbol-mini"
+                                    aria-hidden="true">△</span><span><strong>Ascenso</strong><small>Crecimiento: crear
+                                        caminos que aún no existen.</small></span><span
+                                    class="toggle-state">Activo</span></button>
+                        </div>
+                        <div class="palette-row" aria-label="Color del símbolo">
+                            <span class="palette-label">Pinta tu símbolo</span>
+                            <button class="palette-choice" type="button" data-color="#f2f3ee" data-color-name="libertad"
+                                aria-pressed="true"><span class="palette-dot"
+                                    style="--swatch:#f2f3ee"></span>Blanco</button>
+                            <button class="palette-choice" type="button" data-color="#7a9b84"
+                                data-color-name="naturaleza" aria-pressed="false"><span class="palette-dot"
+                                    style="--swatch:#7a9b84"></span>Verde</button>
+                            <button class="palette-choice" type="button" data-color="#6c99b3" data-color-name="conexión"
+                                aria-pressed="false"><span class="palette-dot"
+                                    style="--swatch:#6c99b3"></span>Azul</button>
+                        </div>
+                        <p class="symbol-result" id="symbol-result" aria-live="polite">Comunidad + movimiento +
+                            crecimiento; en libertad.</p>
+                    </div>
+                </div>
+                <div class="materials reveal" aria-label="Materiales Lumarén">
+                    <div class="material"><span>TEXTURA 01</span><strong>Tela recuperada</strong></div>
+                    <div class="material"><span>TEXTURA 02</span><strong>Hilos y fibras</strong></div>
+                    <div class="material"><span>TEXTURA 03</span><strong>Papel reutilizado</strong></div>
+                    <div class="material"><span>TEXTURA 04</span><strong>Superficie rugosa</strong></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="identity" id="identidad">
+            <div class="wrap">
+                <div class="wear-grid reveal">
+                    <div class="bracelet-photo"><img id="bracelet-image" src="img/lazo_verde.png"
+                            alt="Brazalete verde Lumarén con el símbolo de la tribu"></div>
+                    <div class="identity-copy">
+                        <p class="eyebrow">03 / Los Lumarén</p>
+                        <h2 class="title">Una idea que<br>se lleva puesta.</h2>
+                        <p>Un brazalete hecho con retazos, hilos, papel recuperado o pintura. Elige su color para
+                            conocer la causa que acompaña.</p>
+                        <fieldset class="swatch-options">
+                            <legend>¿Qué quieres cuidar?</legend>
+                            <button class="swatch-button" type="button" data-bracelet="green" aria-pressed="true"><span
+                                    class="swatch-chip" style="--color:#173e32"></span>Naturaleza</button>
+                            <button class="swatch-button" type="button" data-bracelet="blue" aria-pressed="false"><span
+                                    class="swatch-chip" style="--color:#183b5b"></span>Mar</button>
+                            <button class="swatch-button" type="button" data-bracelet="gray" aria-pressed="false"><span
+                                    class="swatch-chip" style="--color:#d9dbd7"></span>Ciudad</button>
+                        </fieldset>
+                        <p class="bracelet-meaning" id="bracelet-meaning" aria-live="polite">Verde oscuro: una limpieza
+                            en la naturaleza. Cuidar la tierra también es crear futuro.</p>
+                    </div>
+                </div>
+                <div class="face-block reveal">
+                    <div>
+                        <p class="eyebrow">Código sobre la piel</p>
+                        <h2 class="title">Tres líneas.<br>Una conexión.</h2>
+                        <p class="section-head"
+                            style="display:block;margin:18px 0 0;color:var(--muted);font-size:14px;line-height:1.7">Un
+                            trazo geométrico como señal de una identidad propia. Mente, naturaleza y comunidad, en
+                            diálogo.</p>
+                        <div class="sequence"><span>01 · MENTE</span><span>02 · NATURALEZA</span><span>03 ·
+                                COMUNIDAD</span></div>
+                        <p class="hand-note">No es uniforme. Es expresión.</p>
+                    </div>
+                    <div class="face-gallery">
+                        <figure><img src="img/maquillaje01.png"
+                                alt="Maquillaje Lumarén con tres líneas geométricas en el rostro">
+                            <figcaption>Un código compartido.</figcaption>
+                        </figure>
+                        <figure><img src="img/maquillaje02.png"
+                                alt="Otra interpretación del maquillaje geométrico Lumarén">
+                            <figcaption>Cada rostro, su versión.</figcaption>
+                        </figure>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="manifest" id="manifiesto">
+            <div class="manifest-wrap wrap">
+                <div class="manifest-head reveal">
+                    <div>
+                        <p class="eyebrow">04 / Lo que elegimos</p>
+                        <h2 class="title">Manifiesto<br>Lumarén.</h2>
+                    </div>
+                    <p class="hand-note">Una forma de mirar.<br>Una forma de hacer.</p>
+                </div>
+                <div class="manifest-lines reveal">
+                    <article class="manifest-line"><span>01</span>
+                        <p>Somos Lumarén, nacidos de un mundo que olvidó detenerse.</p>
+                    </article>
+                    <article class="manifest-line"><span>02</span>
+                        <p>Rechazamos la superficialidad, la contaminación y la necesidad de aparentar.</p>
+                    </article>
+                    <article class="manifest-line"><span>03</span>
+                        <p>Defendemos la creatividad, la naturaleza y la unión entre las personas.</p>
+                    </article>
+                    <article class="manifest-line"><span>04</span>
+                        <p>Transformamos lo cotidiano en algo nuevo mediante el arte.</p>
+                    </article>
+                    <article class="manifest-line"><span>05</span>
+                        <p>No buscamos encajar en el mundo: buscamos darle otra forma.</p>
+                    </article>
+                </div>
+                <div class="manifest-end reveal">
+                    <p>La tribu no termina en estas palabras. Sigue en cada gesto de cuidado, en cada idea compartida y
+                        en todo lo que nos atrevemos a transformar.</p>
+                    <form class="reflection" id="reflection-form">
+                        <label for="reflection-text">¿Y vos? ¿Qué cambiarías del mundo?</label>
+                        <textarea id="reflection-text" maxlength="240" placeholder="Yo transformaría..."
+                            required></textarea>
+                        <button type="submit">Dejar mi huella ↗</button>
+                        <p class="reflection-state" id="reflection-state" aria-live="polite">Tu respuesta se guarda en
+                            este dispositivo.</p>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        <div class="footer-row wrap"><a class="brand" href="#inicio"><img src="img/logo_blanco_transparente.png"
+                    alt=""><span>Lumarén</span></a>
+            <p>"Crear con libertad. Cuidar lo que nos une". Profe apruebeme.</p><a href="#inicio">Volver arriba ↑</a>
+        </div>
+    </footer>
+
+    <script>
+        const symbolMeanings = {
+            circle: "comunidad",
+            wave: "movimiento",
+            triangle: "crecimiento"
+        };
+        const selectedParts = new Set(["circle", "wave", "triangle"]);
+        let selectedColor = "libertad";
+
+        function updateSymbolMessage() {
+            const values = [...selectedParts].map((part) => symbolMeanings[part]);
+            const description = values.length ? values.join(" + ") : "una pausa para imaginar";
+            document.querySelector("#symbol-result").textContent = `${description}; en ${selectedColor}.`;
+        }
+
+        document.querySelectorAll(".symbol-toggle").forEach((button) => {
+            button.addEventListener("click", () => {
+                const part = button.dataset.symbol;
+                if (selectedParts.has(part)) selectedParts.delete(part);
+                else selectedParts.add(part);
+                const active = selectedParts.has(part);
+                button.setAttribute("aria-pressed", String(active));
+                button.querySelector(".toggle-state").textContent = active ? "Activo" : "Pausado";
+                document.querySelector(`[data-part="${part}"]`).classList.toggle("active", active);
+                updateSymbolMessage();
+            });
+        });
+
+        document.querySelectorAll(".palette-choice").forEach((button) => {
+            button.addEventListener("click", () => {
+                document.querySelectorAll(".palette-choice").forEach((choice) => choice.setAttribute("aria-pressed", String(choice === button)));
+                document.querySelector("#custom-symbol").style.setProperty("--mark-color", button.dataset.color);
+                selectedColor = button.dataset.colorName;
+                updateSymbolMessage();
+            });
+        });
+
+        document.querySelector("#transform-button").addEventListener("click", (event) => {
+            const active = event.currentTarget.getAttribute("aria-pressed") !== "true";
+            event.currentTarget.setAttribute("aria-pressed", String(active));
+            event.currentTarget.textContent = active ? "Volver al germen ↺" : "Ver la transformación ↗";
+            document.querySelectorAll(".story-panel").forEach((panel, index) => panel.classList.toggle("transform", active && index > 0));
+        });
+
+        const braceletInfo = {
+            green: { image: "img/lazo_verde.png", alt: "Brazalete verde Lumarén para cuidar la naturaleza", meaning: "Verde oscuro: una limpieza en la naturaleza. Cuidar la tierra también es crear futuro." },
+            blue: { image: "img/lazo_azul.png", alt: "Brazalete azul Lumarén para cuidar el mar", meaning: "Azul profundo: una limpieza en el mar. Proteger el agua es cuidar todo lo que vive." },
+            gray: { image: "img/lazo_blancoogris.png", alt: "Brazalete blanco y gris Lumarén para cuidar la ciudad", meaning: "Blanco o gris: una limpieza en la ciudad. Recuperar lo que existe también es crear." }
+        };
+        document.querySelectorAll(".swatch-button").forEach((button) => {
+            button.addEventListener("click", () => {
+                const details = braceletInfo[button.dataset.bracelet];
+                document.querySelectorAll(".swatch-button").forEach((choice) => choice.setAttribute("aria-pressed", String(choice === button)));
+                const image = document.querySelector("#bracelet-image");
+                image.src = details.image;
+                image.alt = details.alt;
+                document.querySelector("#bracelet-meaning").textContent = details.meaning;
+            });
+        });
+
+        const reflectionForm = document.querySelector("#reflection-form");
+        const reflectionText = document.querySelector("#reflection-text");
+        const reflectionState = document.querySelector("#reflection-state");
+        try {
+            const savedReflection = localStorage.getItem("lumaren-reflection");
+            if (savedReflection) reflectionText.value = savedReflection;
+        } catch { /* El formulario sigue disponible si el almacenamiento local está bloqueado. */ }
+        reflectionForm.addEventListener("submit", (event) => {
+            event.preventDefault();
+            try {
+                localStorage.setItem("lumaren-reflection", reflectionText.value.trim());
+                reflectionState.textContent = "Tu huella quedó guardada en este dispositivo.";
+            } catch {
+                reflectionState.textContent = "Tu idea estará aquí mientras mantengas esta página abierta.";
+            }
+        });
+
+        const revealObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("visible");
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: .12 });
+        document.querySelectorAll(".reveal").forEach((element) => revealObserver.observe(element));
+    </script>
+</body>
+
+</html>
